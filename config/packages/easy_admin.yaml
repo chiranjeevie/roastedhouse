@@ -1,0 +1,58 @@
+easy_admin:
+  site_name: '<img src="/admin/images/logo.png">'
+  list:
+    max_results: 10
+  design:
+    form_theme:
+      - '@EasyAdmin/form/bootstrap_4.html.twig'
+      - '@VichUploader/Form/fields.html.twig'
+  entities:
+
+    User:
+      class: App\Entity\User
+      controller: App\Controller\UserAdminController
+      form: {fields: [username, email, role, password]}
+    Roles:
+      class: App\Entity\Role
+
+    NetSuiteConfiguration:
+      label: 'NetSuite Configuration'
+      search:
+        fields: ['name', 'key1', 'key2']
+      class: App\Entity\NetSuiteConfiguration
+      form: {fields: [name,apiEndpoint,key1,key2,key3,key4]}
+      list: {help: 'NetSuite API Configuration.', actions: [ {name: show, icon: info-circle, label: Show}], fields: [name,apiEndpoint,key1,key2,key3,key4], sort: id}
+
+    RevelConfiguration:
+      label: 'Revel Configuration'
+      class: App\Entity\RevelConfiguration
+      form: {fields: [name,apiEndpoint,key1,key2,key3,key4]}
+      list: {help: 'Revel API Configuration.', actions: [ {name: show, icon: info-circle, label: Show}], fields: [name,apiEndpoint,key1,key2,key3,key4], sort: id}
+
+    NetsuiteToRevelHistory:
+      class: App\Entity\NetsuiteToRevelHistory
+      disabled_actions: ['new']
+      label: 'Netsuite To Revel History'
+      form: {fields: [{ property: 'ranTime', format: 'j/n/Y' },status,error]}
+      list: {help: 'Netsuite To Revel History.', actions: [ {name: show, icon: info-circle, label: Show}], fields: [ranTime,status,error], sort: id}
+
+    RevelToNetsuiteHistory:
+      label: 'Revel To Netsuite History'
+      disabled_actions: ['new']
+      class: App\Entity\RevelToNetsuiteHistory
+      form: {fields: [ranTime,status,error]}
+      list: {help: 'Revel To Netsuite History.', actions: [ {name: show, icon: info-circle, label: Show}], fields: [ranTime,status,error], sort: id}
+
+    Scheduler:
+      class: App\Entity\Scheduler
+      form: {fields: [name,last_run,description,status]}
+      list: {help: 'Most Recent sync history!', actions: [ 'search', {name: show, icon: info-circle, label: Show}], fields: [name,last_run,status], sort: id}
+
+    SyncHistory:
+      class: App\Entity\SyncHistory
+      search:
+        fields: ['source', 'dest', 'trans_record']
+      label: 'Scheduler History'
+      disabled_actions: ['new']
+      form: {fields: [source,dest,trans_record]}
+      list: {help: 'Most Recent Scheduler history!', actions: [ {name: show, icon: info-circle, label: Show}], fields: [source,dest,trans_record], sort: id}
