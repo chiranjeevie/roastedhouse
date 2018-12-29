@@ -6,6 +6,20 @@ easy_admin:
     form_theme:
       - '@EasyAdmin/form/bootstrap_4.html.twig'
       - '@VichUploader/Form/fields.html.twig'
+    menu:
+
+      - { label: 'Configurations' }
+      - NetSuiteConfiguration
+      - RevelConfiguration
+      - { label: 'Schedular and History' }
+      - Scheduler
+      - NetsuiteToRevelHistory
+      - RevelToNetsuiteHistory
+      - SyncHistory
+      - { label: 'Users' }
+      - User
+      - Roles
+
   entities:
 
     User:
