@@ -17,24 +17,24 @@ class SyncRevelandNetsuiteCommand extends Command
     {
         $this
             ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->addArgument('module', InputArgument::OPTIONAL, 'Argument description')
+            ->addOption('limit', null, InputOption::VALUE_NONE, 'Option description')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
+        $arg1 = $input->getArgument('module');
 
         if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
+            $io->note(sprintf('we are processing the module: %s', $arg1));
         }
 
-        if ($input->getOption('option1')) {
-            // ...
+        if ($input->getOption('limit')) {
+            $io->note(sprintf('You passed an argument: %s', $input->getOption('limit')));
         }
 
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->success($arg1.' Sync REVEL -> NETSUITE  completed successfully.');
     }
 }
