@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\SyncHistoryRepository")
+ * @ORM\Table(name="sync_history")
  */
 class SyncHistory
 {
@@ -23,24 +24,40 @@ class SyncHistory
     private $source;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json_array")
      */
-    private $dest;
-
-    /**
-     * @ORM\Column(type="string", length=65555)
-     */
-    private $trans_record;
+    private $transaction_record;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $status;
+    private $is_success;
 
     /**
-     * @ORM\Column(type="string", length=65555)
+     * @ORM\Column(type="string", length=255)
+     */
+    private $destination;
+
+    /**
+     * @ORM\Column(type="string", length=65555, nullable=true)
      */
     private $error;
+
+
+    /**
+     * @var datetime $created_at
+     *
+     * @ORM\Column(type="datetime")
+     */
+    public $created_at;
+
+    /**
+     * @var datetime $updated_at
+     *
+     * @ORM\Column(type="datetime", nullable = true)
+     */
+    public $updated_at;
+
 
     public function getId(): ?int
     {
@@ -59,38 +76,38 @@ class SyncHistory
         return $this;
     }
 
-    public function getDest(): ?string
+    public function getTransactionRecord()
     {
-        return $this->dest;
+        return $this->transaction_record;
     }
 
-    public function setDest(string $dest): self
+    public function setTransactionRecord($transaction_record): self
     {
-        $this->dest = $dest;
+        $this->transaction_record = $transaction_record;
 
         return $this;
     }
 
-    public function getTransRecord(): ?string
+    public function getIsSuccess(): ?int
     {
-        return $this->trans_record;
+        return $this->is_success;
     }
 
-    public function setTransRecord(string $trans_record): self
+    public function setIsSuccess(int $is_success): self
     {
-        $this->trans_record = $trans_record;
+        $this->is_success = $is_success;
 
         return $this;
     }
 
-    public function getStatus(): ?int
+    public function getDestination(): ?string
     {
-        return $this->status;
+        return $this->destination;
     }
 
-    public function setStatus(int $status): self
+    public function setDestination(string $destination): self
     {
-        $this->status = $status;
+        $this->destination = $destination;
 
         return $this;
     }
@@ -100,10 +117,32 @@ class SyncHistory
         return $this->error;
     }
 
-    public function setError(string $error): self
+    public function setError(?string $error): self
     {
         $this->error = $error;
 
         return $this;
     }
+
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->created_at = new \DateTime("now");
+    }
+
+    /**
+     * Gets triggered every time on update
+
+     * @ORM\PreUpdate
+     */
+    public function onPreUpdate()
+    {
+        $this->updated_at = new \DateTime("now");
+    }
+
 }

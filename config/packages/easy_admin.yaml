@@ -6,6 +6,13 @@ easy_admin:
     form_theme:
       - '@EasyAdmin/form/bootstrap_4.html.twig'
       - '@VichUploader/Form/fields.html.twig'
+      - '@AdminLTE/layout/default-layout.html.twig'
+    assets:
+      favicon: '/config/images/logo.png'
+      css:
+        - '/admin/css/custom.css'
+      js:
+
     menu:
 
       - { label: 'Configurations' }
@@ -20,12 +27,14 @@ easy_admin:
       - User
       - Roles
 
+
+
   entities:
 
     User:
       class: App\Entity\User
       controller: App\Controller\UserAdminController
-      form: {fields: [username, email, role, password]}
+      form: {fields: [username, email, role, password,isActive]}
     Roles:
       class: App\Entity\Role
 
@@ -59,14 +68,14 @@ easy_admin:
 
     Scheduler:
       class: App\Entity\Scheduler
-      form: {fields: [name,last_run,description,status]}
-      list: {help: 'Most Recent sync history!', actions: [ 'search', {name: show, icon: info-circle, label: Show}], fields: [name,last_run,status], sort: id}
+      form: {fields: [name,description,interval_time]}
+      list: {help: 'Most Recent sync history!', actions: [ 'search', {name: show, icon: info-circle, label: Show}], fields: [name,last_ran_time,interval_time,is_active], sort: id}
 
     SyncHistory:
       class: App\Entity\SyncHistory
-      search:
-        fields: ['source', 'dest', 'trans_record']
+      #search:
+      #  fields: ['source', 'destination', 'transaction_record']
       label: 'Scheduler History'
-      disabled_actions: ['new']
-      form: {fields: [source,dest,trans_record]}
-      list: {help: 'Most Recent Scheduler history!', actions: [ {name: show, icon: info-circle, label: Show}], fields: [source,dest,trans_record], sort: id}
+      #disabled_actions: ['new']
+      form: {fields: [source,destination,transaction_record,is_success,error,created_at]}
+      list: {help: 'Most Recent Scheduler history!', actions: [ {name: show, icon: info-circle, label: Show}], fields: [source,destination,transaction_record,{ property: 'is_success', type: 'boolean' },error,created_at], sort: id}

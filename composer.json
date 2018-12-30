@@ -12,6 +12,7 @@
         "easycorp/easyadmin-bundle": "^2.0",
         "ensembleau/revel-php": "^1.1",
         "gesdinet/jwt-refresh-token-bundle": "*",
+        "kevinpapst/adminlte-bundle": "^2.0",
         "lexik/jwt-authentication-bundle": "*",
         "nelmio/cors-bundle": "*",
         "sensio/framework-extra-bundle": "^5.2",
@@ -20,6 +21,7 @@
         "symfony/flex": "^1.1",
         "symfony/framework-bundle": "*",
         "symfony/maker-bundle": "^1.9",
+        "symfony/security-bundle": "4.2.*",
         "symfony/web-server-bundle": "4.2.*",
         "symfony/yaml": "*",
         "vich/uploader-bundle": "^1.8"
@@ -63,12 +65,13 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": "true",
             "require": "4.2.*"
         }
     },
     "require-dev": {
         "api-platform/schema-generator": "^2.1",
-        "doctrine/doctrine-fixtures-bundle": "^3.0"
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
+        "symfony/profiler-pack": "^1.0"
     }
 }

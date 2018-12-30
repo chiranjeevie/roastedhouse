@@ -16,29 +16,62 @@ class Scheduler
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $description;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $last_run;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $status;
+    private $interval_time;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $last_ran_time;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=65555)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $is_active;
+
+
 
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+
+    public function getIntervalTime(): ?int
+    {
+        return $this->interval_time;
+    }
+
+    public function setIntervalTime(int $interval_time): self
+    {
+        $this->interval_time = $interval_time;
+
+        return $this;
+    }
+
+    public function getLastRanTime(): ?\DateTimeInterface
+    {
+        return $this->last_ran_time;
+    }
+
+    public function setLastRanTime(?\DateTimeInterface $last_ran_time): self
+    {
+        $this->last_ran_time = $last_ran_time;
+
+        return $this;
     }
 
     public function getName(): ?string
@@ -46,7 +79,7 @@ class Scheduler
         return $this->name;
     }
 
-    public function setName(?string $name): self
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -65,26 +98,14 @@ class Scheduler
         return $this;
     }
 
-    public function getLastRun(): ?\DateTimeInterface
+    public function getIsActive(): ?bool
     {
-        return $this->last_run;
+        return $this->is_active;
     }
 
-    public function setLastRun(\DateTimeInterface $last_run): self
+    public function setIsActive(?bool $is_active): self
     {
-        $this->last_run = $last_run;
-
-        return $this;
-    }
-
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
+        $this->is_active = $is_active;
 
         return $this;
     }

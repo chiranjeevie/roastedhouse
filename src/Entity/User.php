@@ -88,20 +88,6 @@ class User implements UserInterface
      */
     private $role;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $gplusToken;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $linkedinToken;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $fbToken;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -168,7 +154,7 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return ['ROLE_USER'];
+        return ['ROLE_USER','ROLE_ADMIN'];
     }
 
     public function getSalt()
@@ -193,41 +179,6 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getGplusToken(): ?string
-    {
-        return $this->gplusToken;
-    }
-
-    public function setGplusToken(?string $gplusToken): self
-    {
-        $this->gplusToken = $gplusToken;
-
-        return $this;
-    }
-
-    public function getLinkedinToken(): ?string
-    {
-        return $this->linkedinToken;
-    }
-
-    public function setLinkedinToken(?string $linkedinToken): self
-    {
-        $this->linkedinToken = $linkedinToken;
-
-        return $this;
-    }
-
-    public function getFbToken(): ?string
-    {
-        return $this->fbToken;
-    }
-
-    public function setFbToken(?string $fbToken): self
-    {
-        $this->fbToken = $fbToken;
-
-        return $this;
-    }
 
     public function getLastLogin(): ?\DateTimeInterface
     {

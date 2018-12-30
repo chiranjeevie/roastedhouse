@@ -10,6 +10,17 @@ security:
         property: username
 
   firewalls:
+    main:
+      anonymous: ~
+      form_login:
+        login_path: login
+        check_path: login
+        default_target_path: login
+        always_use_default_target_path: true
+      logout:
+        path:   /logout
+        target: /login
+        invalidate_session: true
     dev:
       pattern: ^/(_(profiler|wdt)|css|images|js)/
       security: false
@@ -65,7 +76,7 @@ security:
     - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/api/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     - { path: ^/api,       roles: IS_AUTHENTICATED_ANONYMOUSLY }
-    - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/admin, roles: IS_AUTHENTICATED_FULLY }
     # - { path: ^/profile, roles: ROLE_USER }
   role_hierarchy:
     ROLE_WRITER : 0,
