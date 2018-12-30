@@ -8,6 +8,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Revel\Revel;
 
 class SyncRevelandNetsuiteCommand extends Command
 {
@@ -26,6 +27,11 @@ class SyncRevelandNetsuiteCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('module');
+
+        $output->writeln([
+            'My First Symfony command',// A line
+        ]);
+
 
         if ($arg1) {
             $io->note(sprintf('we are processing the module: %s', $arg1));

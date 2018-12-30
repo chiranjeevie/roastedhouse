@@ -2,7 +2,7 @@
     "name": "symfony/skeleton",
     "type": "project",
     "license": "MIT",
-    "description": "A minimal Symfony project recommended to create bare bones applications",
+    "description": "A minimal project to create the API sync",
     "require": {
         "php": "^7.1.3",
         "ext-ctype": "*",
@@ -12,9 +12,10 @@
         "easycorp/easyadmin-bundle": "^2.0",
         "ensembleau/revel-php": "^1.1",
         "gesdinet/jwt-refresh-token-bundle": "*",
-        "kevinpapst/adminlte-bundle": "^2.0",
+        "kevinpapst/adminlte-bundle": "^2.1",
         "lexik/jwt-authentication-bundle": "*",
         "nelmio/cors-bundle": "*",
+        "ryanwinchester/netsuite-php": "2017.1.*",
         "sensio/framework-extra-bundle": "^5.2",
         "symfony/console": "*",
         "symfony/dotenv": "*",
@@ -72,6 +73,7 @@
     "require-dev": {
         "api-platform/schema-generator": "^2.1",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
-        "symfony/profiler-pack": "^1.0"
+        "symfony/profiler-pack": "^1.0",
+        "symfony/var-dumper": "4.2.*"
     }
 }

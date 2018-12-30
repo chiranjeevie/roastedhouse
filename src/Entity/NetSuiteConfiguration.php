@@ -26,27 +26,42 @@ class NetSuiteConfiguration
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $key1;
+    private $endpoint;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $key2;
+    private $host_url;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $key3;
+    private $account;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $key4;
+    private $consumer_key;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $api_endpoint;
+    private $consumer_secret;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $token_secret;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $signature_algorithm;
 
     public function getId(): ?int
     {
@@ -65,62 +80,98 @@ class NetSuiteConfiguration
         return $this;
     }
 
-    public function getKey1(): ?string
+    public function getEndpoint(): ?string
     {
-        return $this->key1;
+        return $this->endpoint;
     }
 
-    public function setKey1(string $key1): self
+    public function setEndpoint(string $endpoint): self
     {
-        $this->key1 = $key1;
+        $this->endpoint = $endpoint;
 
         return $this;
     }
 
-    public function getKey2(): ?string
+    public function getHostUrl(): ?string
     {
-        return $this->key2;
+        return $this->host_url;
     }
 
-    public function setKey2(string $key2): self
+    public function setHostUrl(string $host_url): self
     {
-        $this->key2 = $key2;
+        $this->host_url = $host_url;
 
         return $this;
     }
 
-    public function getKey3(): ?string
+    public function getAccount(): ?string
     {
-        return $this->key3;
+        return $this->account;
     }
 
-    public function setKey3(string $key3): self
+    public function setAccount(string $account): self
     {
-        $this->key3 = $key3;
+        $this->account = $account;
 
         return $this;
     }
 
-    public function getKey4(): ?string
+    public function getConsumerKey(): ?string
     {
-        return $this->key4;
+        return $this->consumer_key;
     }
 
-    public function setKey4(string $key4): self
+    public function setConsumerKey(string $consumer_key): self
     {
-        $this->key4 = $key4;
+        $this->consumer_key = $consumer_key;
 
         return $this;
     }
 
-    public function getApiEndpoint(): ?string
+    public function getConsumerSecret(): ?string
     {
-        return $this->api_endpoint;
+        return $this->consumer_secret;
     }
 
-    public function setApiEndpoint(string $api_endpoint): self
+    public function setConsumerSecret(string $consumer_secret): self
     {
-        $this->api_endpoint = $api_endpoint;
+        $this->consumer_secret = $consumer_secret;
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    public function getTokenSecret(): ?string
+    {
+        return $this->token_secret;
+    }
+
+    public function setTokenSecret(string $token_secret): self
+    {
+        $this->token_secret = $token_secret;
+
+        return $this;
+    }
+
+    public function getSignatureAlgorithm(): ?string
+    {
+        return $this->signature_algorithm;
+    }
+
+    public function setSignatureAlgorithm(string $signature_algorithm): self
+    {
+        $this->signature_algorithm = $signature_algorithm;
 
         return $this;
     }

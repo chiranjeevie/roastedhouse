@@ -26,27 +26,17 @@ class RevelConfiguration
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $api_endpoint;
+    private $domain_name;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $key1;
+    private $secret;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $key2;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $key3;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $key4;
+    private $revel_key;
 
     public function getId(): ?int
     {
@@ -65,62 +55,38 @@ class RevelConfiguration
         return $this;
     }
 
-    public function getApiEndpoint(): ?string
+    public function getDomainName(): ?string
     {
-        return $this->api_endpoint;
+        return $this->domain_name;
     }
 
-    public function setApiEndpoint(string $api_endpoint): self
+    public function setDomainName(string $domain_name): self
     {
-        $this->api_endpoint = $api_endpoint;
+        $this->domain_name = $domain_name;
 
         return $this;
     }
 
-    public function getKey1(): ?string
+    public function getSecret(): ?string
     {
-        return $this->key1;
+        return $this->secret;
     }
 
-    public function setKey1(string $key1): self
+    public function setSecret(string $secret): self
     {
-        $this->key1 = $key1;
+        $this->secret = $secret;
 
         return $this;
     }
 
-    public function getKey2(): ?string
+    public function getRevelKey(): ?string
     {
-        return $this->key2;
+        return $this->revel_key;
     }
 
-    public function setKey2(string $key2): self
+    public function setRevelKey(string $revel_key): self
     {
-        $this->key2 = $key2;
-
-        return $this;
-    }
-
-    public function getKey3(): ?string
-    {
-        return $this->key3;
-    }
-
-    public function setKey3(string $key3): self
-    {
-        $this->key3 = $key3;
-
-        return $this;
-    }
-
-    public function getKey4(): ?string
-    {
-        return $this->key4;
-    }
-
-    public function setKey4(string $key4): self
-    {
-        $this->key4 = $key4;
+        $this->revel_key = $revel_key;
 
         return $this;
     }
