@@ -42,6 +42,11 @@ class Scheduler
      */
     private $is_active;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $is_success;
+
 
 
     public function getId(): ?int
@@ -106,6 +111,18 @@ class Scheduler
     public function setIsActive(?bool $is_active): self
     {
         $this->is_active = $is_active;
+
+        return $this;
+    }
+
+    public function getIsSuccess(): ?int
+    {
+        return $this->is_success;
+    }
+
+    public function setIsSuccess(?int $is_success): self
+    {
+        $this->is_success = $is_success;
 
         return $this;
     }

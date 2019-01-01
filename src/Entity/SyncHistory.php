@@ -52,11 +52,19 @@ class SyncHistory
     public $created_at;
 
     /**
-     * @var datetime $updated_at
-     *
-     * @ORM\Column(type="datetime", nullable = true)
+     * @ORM\Column(type="string", length=255)
      */
-    public $updated_at;
+    private $module_name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $module_entity;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true, length=255)
+     */
+    private $entity_id;
 
 
     public function getId(): ?int
@@ -135,14 +143,40 @@ class SyncHistory
         $this->created_at = new \DateTime("now");
     }
 
-    /**
-     * Gets triggered every time on update
-
-     * @ORM\PreUpdate
-     */
-    public function onPreUpdate()
+    public function getModuleName(): ?string
     {
-        $this->updated_at = new \DateTime("now");
+        return $this->module_name;
+    }
+
+    public function setModuleName(string $module_name): self
+    {
+        $this->module_name = $module_name;
+
+        return $this;
+    }
+
+    public function getModuleEntity(): ?string
+    {
+        return $this->module_entity;
+    }
+
+    public function setModuleEntity(string $module_entity): self
+    {
+        $this->module_entity = $module_entity;
+
+        return $this;
+    }
+
+    public function getEntityId(): ?int
+    {
+        return $this->entity_id;
+    }
+
+    public function setEntityId(?int $entity_id): self
+    {
+        $this->entity_id = $entity_id;
+
+        return $this;
     }
 
 }

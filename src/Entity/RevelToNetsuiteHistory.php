@@ -18,46 +18,42 @@ class RevelToNetsuiteHistory
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $ran_time;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $status;
+    private $is_success;
 
     /**
      * @ORM\Column(type="string", length=65555, nullable=true)
      */
     private $error;
 
+    /**
+     * @var datetime $ran_time
+     *
+     * @ORM\Column(type="datetime")
+     */
+    public $ran_time;
+
+    /**
+     * @ORM\Column(type="bigint")
+     */
+    private $processed_records_count;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getRanTime(): ?\DateTimeInterface
+    public function getIsSuccess(): ?int
     {
-        return $this->ran_time;
+        return $this->is_success;
     }
 
-    public function setRanTime(\DateTimeInterface $ran_time): self
+    public function setIsSuccess(int $is_success): self
     {
-        $this->ran_time = $ran_time;
-
-        return $this;
-    }
-
-    public function getStatus(): ?int
-    {
-        return $this->status;
-    }
-
-    public function setStatus(int $status): self
-    {
-        $this->status = $status;
+        $this->is_success = $is_success;
 
         return $this;
     }
@@ -73,4 +69,27 @@ class RevelToNetsuiteHistory
 
         return $this;
     }
+
+    /**
+     * Gets triggered only on insert
+
+     * @ORM\PrePersist
+     */
+    public function onPrePersist()
+    {
+        $this->ran_time = new \DateTime("now");
+    }
+
+    public function getProcessedRecordsCount(): ?int
+    {
+        return $this->processed_records_count;
+    }
+
+    public function setProcessedRecordsCount(int $processed_records_count): self
+    {
+        $this->processed_records_count = $processed_records_count;
+
+        return $this;
+    }
+
 }

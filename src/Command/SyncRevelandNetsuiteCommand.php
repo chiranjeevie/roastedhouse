@@ -8,16 +8,29 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use App\Service\SyncService;
 use Revel\Revel;
 
 class SyncRevelandNetsuiteCommand extends Command
 {
-    protected static $defaultName = 'syncRevelandNetsuite';
+
+   /**
+     * @var SyncHelper
+     */
+    private $syncHelper;
+
+    public function __construct(SyncService $syncHelper)
+    {
+        $this->syncHelper = $syncHelper;
+        parent::__construct();
+
+    }
 
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
+            ->setName('sync:syncRevelToNetsuite')
+            ->setDescription('sync Revel To Netsuite')
             ->addArgument('module', InputArgument::OPTIONAL, 'Argument description')
             ->addOption('limit', null, InputOption::VALUE_NONE, 'Option description')
         ;
@@ -28,19 +41,22 @@ class SyncRevelandNetsuiteCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $arg1 = $input->getArgument('module');
 
-        $output->writeln([
-            'My First Symfony command',// A line
-        ]);
+        $startTime = time();
 
+        ini_set("memory_limit", "512M");
 
-        if ($arg1) {
-            $io->note(sprintf('we are processing the module: %s', $arg1));
-        }
+        //$this->initContainers();
 
-        if ($input->getOption('limit')) {
-            $io->note(sprintf('You passed an argument: %s', $input->getOption('limit')));
-        }
+        $this->syncHelper->executeBulk($output);
+
+        $endTime = time() - $startTime;
+        $totalSec = $endTime;
+
+        echo "\n------------------------------------------------------------ \n";
+        echo "Script execution time: {$totalSec} seconds \n";
+        echo "------------------------------------------------------------ \n";
 
         $io->success($arg1.' Sync REVEL -> NETSUITE  completed successfully.');
+
     }
 }
